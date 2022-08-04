@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "../../include/core/main.h"
 
-int main(z) {
+int main() {
 
     printf("Hello, World!");
 
