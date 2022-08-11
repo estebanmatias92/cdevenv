@@ -1,8 +1,16 @@
 ########################
 # My custom .gitignore #
 ########################
-/build
+build
 *.log
+
+
+
+########################
+# My custom .gitignore #
+########################
+devenvs-docker-compose.yaml
+devenvs-docker-compose.yml
 
 
 
@@ -21,6 +29,23 @@
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+
+
+######################
+# VS Code .gitignore #
+######################
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
 
 
 

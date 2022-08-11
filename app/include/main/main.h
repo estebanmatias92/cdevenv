@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef __MAIN__
 #define __MAIN__
 

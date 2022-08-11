@@ -8,7 +8,8 @@
 	},
 
 	// Extensions
-	"makefile.extensionOutputFolder": "./.vscode",
+	//"makefile.extensionOutputFolder": "./.vscode",
 	"prettier.tabWidth": 4,
-	"prettier.useTabs": true
+	"prettier.useTabs": true,
+	"cmake.sourceDirectory": "${workspaceFolder}/app"
 }
