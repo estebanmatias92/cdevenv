@@ -1,6 +1,8 @@
 # Base Image
 FROM gcc:11 as base
 
+LABEL description="Installing dependencies..."
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         binutils \
         cmake \
@@ -11,6 +13,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 FROM base as build
+
+LABEL description="Building project..."
 
 # Create folder for app service and change directory
 WORKDIR /src/app
@@ -31,8 +35,11 @@ RUN mkdir build \
 FROM base AS vscode
 
 # Get packages for editors and CVS
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y \
+        cppcheck \
+        flawfinder \
         git \
+        gdb \
     && apt-get clean
 
 # Create and change user
@@ -52,6 +59,8 @@ CMD ["sleep", "infinity"]
 # Production Target Stage 
 # Normally called without specifying "target" in compose
 FROM busybox:glibc
+
+LABEL description="Creating runtime container..."
 
 # Create production ready folder for the binaries and change directory
 WORKDIR /usr/local/app
