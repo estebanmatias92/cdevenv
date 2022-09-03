@@ -1,14 +1,14 @@
-project($PROJECT_NAME)
+project(${PROJECT_NAME})
+
+set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include/PrintMsg)
 
 
 # Adding executable
-add_executable(main main/main.c)
-target_link_libraries(main
-    PRIVATE
-    printhello)
+add_executable(${PROJECT_NAME} 
+    main.cpp
+)
 
-# Adding libraries
-add_library(printhello printhello/printhello.c)
-target_include_directories(printhello 
-    PUBLIC 
-    ${CMAKE_CURRENT_SOURCE_DIR}/../include)
+add_subdirectory(PrintMsg)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE printmsg)
+

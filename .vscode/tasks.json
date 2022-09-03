@@ -11,7 +11,7 @@
                 ""
             ],
             "group": "build",
-            "detail": "compiler: /usr/local/bin/gcc"
+            "detail": "compiler: /usr/local/bin/gcc -g"
         }
     ]
 }

@@ -1,7 +1,13 @@
-# Base Image
+#
+# Base Stage
+#
 FROM gcc:11 as base
 
 LABEL description="Installing dependencies..."
+
+ENV CMAKE_VERSION="3.18"
+
+ENV PROJECT_NAME="cdevenv"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         binutils \
@@ -12,6 +18,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 
 
+#
+# Build Stage
+#
 FROM base as build
 
 LABEL description="Building project..."
@@ -30,8 +39,10 @@ RUN mkdir build \
 
 
 
-# VS Code aimed Stage 
+#
+# VS Code Stage 
 # (This is preferred to run as a Docker Dev Environment)
+#
 FROM base AS vscode
 
 # Get packages for editors and CVS
@@ -56,8 +67,10 @@ CMD ["sleep", "infinity"]
 
 
 
+#
 # Production Target Stage 
 # Normally called without specifying "target" in compose
+#
 FROM busybox:glibc
 
 LABEL description="Creating runtime container..."
