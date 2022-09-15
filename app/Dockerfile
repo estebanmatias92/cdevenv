@@ -1,3 +1,7 @@
+# Global Variables availabe for all the stages
+ARG PROJECT_NAME="cdevenv"
+ARG CMAKE_VERSION="3.18"
+
 #
 # Base Stage
 #
@@ -5,9 +9,13 @@ FROM gcc:11 as base
 
 LABEL description="Installing dependencies..."
 
-ENV CMAKE_VERSION="3.18"
+# Calling Docker arguments
+ARG PROJECT_NAME 
+ARG CMAKE_VERSION
 
-ENV PROJECT_NAME="cdevenv"
+# Sotring the variables in the container
+ENV CMAKE_VERSION=$CMAKE_VERSION
+ENV PROJECT_NAME=$PROJECT_NAME
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         binutils \
@@ -32,10 +40,7 @@ WORKDIR /src/app
 COPY . .
 
 # Build the binaries
-RUN mkdir build \
-    && cd build \
-    && cmake .. \
-    && make 
+RUN chmod +x build_and_start.sh && ./build_and_start.sh
 
 
 
@@ -71,9 +76,13 @@ CMD ["sleep", "infinity"]
 # Production Target Stage 
 # Normally called without specifying "target" in compose
 #
-FROM busybox:glibc
+FROM debian:stable-slim
 
 LABEL description="Creating runtime container..."
+
+# Get the Environment Variable
+ARG PROJECT_NAME
+ENV PROJECT_NAME=$PROJECT_NAME
 
 # Create production ready folder for the binaries and change directory
 WORKDIR /usr/local/app
@@ -82,4 +91,4 @@ WORKDIR /usr/local/app
 COPY --from=build /src/app/build .
     
 # Execute the app
-CMD ["./src/main"]
+CMD ./src/${PROJECT_NAME}

@@ -1,6 +1,7 @@
 {
 	// Editor
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.defaultFormatter": "ms-vscode.cpptools",
+	"editor.formatOnSave": true,
 
 	// Language/Files specific settings
 	"[dockercompose]": {
@@ -63,7 +64,17 @@
 		"ranges": "cpp",
 		"stdexcept": "cpp",
 		"streambuf": "cpp",
-		"typeinfo": "cpp"
+		"typeinfo": "cpp",
+		"cstring": "cpp",
+		"bitset": "cpp",
+		"complex": "cpp",
+		"list": "cpp",
+		"map": "cpp",
+		"set": "cpp",
+		"sstream": "cpp",
+		"cinttypes": "cpp",
+		"typeindex": "cpp",
+		"variant": "cpp"
 	},
 
 	// Linters

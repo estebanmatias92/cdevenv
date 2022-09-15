@@ -1,6 +1,6 @@
-# C/C++ Docker Dev Environment
+# C/C++ Docker (Compose) Dev Environment
 
-An isolated Docker Development Environment for building C/C++ Apps.
+An isolated Docker Development Environment stack for building C/C++ Apps.
 
 ## Use
 
@@ -12,18 +12,13 @@ _`docker compose build console && docker compose run --rm console`_
 
 ### Inside the dev-environment
 
-**Compile and run:**
+**Compile and run from a C++ environment:**
 
-_`mkdir -p /app/build && cd /app/build && cmake .. && make && ./src/main && cd -`_
-
-**Clear source files and binaries:**
-
-_`make clean`_
+_`./app/build_and_start.sh`_
 
 ## Folder structure
 
-There is a _`./src`_ directory which contains the _`.c`_ source files and an _`./include`_ directory which contains the _`.h`_ headers files.
+I use the [The Pitchfork Layout (PFL)](https://api.csswg.org/bikeshed/?force=1&url=https://raw.githubusercontent.com/vector-of-bool/pitchfork/develop/data/spec.bs) in order to structure the project. 
 
-_`main.c`_ file is in _`./src/core/main`_ directory
-
-Everything is a module, so in _`./src`_ and _`./include`_ everything is organized within folders according to that.
+Modules/Libraries names must be the same as the directory name in which they are.
+The src/CmakeLists.txt will be search for every subdirectory and add those who have a CMakeLists.txt as libraries automatically.
