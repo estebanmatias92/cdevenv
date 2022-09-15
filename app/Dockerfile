@@ -57,8 +57,6 @@ RUN apt-get update && apt-get install -y \
         git \
         gdb \
     && apt-get clean
-    
-COPY build_and_start.sh .
 
 RUN chmod +x ./build_and_start.sh
 
