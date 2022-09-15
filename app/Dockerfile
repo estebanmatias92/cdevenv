@@ -57,8 +57,11 @@ RUN apt-get update && apt-get install -y \
         git \
         gdb \
     && apt-get clean
+    
+COPY build_and_start.sh .
 
-ENV DOCKERDEVENVDIRECTORY="/com.docker.devenvironments.code"
+RUN chmod +x ./build_and_start.sh
+
 # Create and change user
 ENV MYUSERNAME="vscode"
 
@@ -67,10 +70,6 @@ RUN useradd -s /bin/bash -m $MYUSERNAME \
     && usermod -aG docker $MYUSERNAME
 
 USER $MYUSERNAME
-
-COPY build_and_start.sh .
-
-RUN chmod +x ./build_and_start.sh
 
 # Keep the container alive
 CMD ["sleep", "infinity"]
