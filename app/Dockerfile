@@ -68,9 +68,9 @@ RUN useradd -s /bin/bash -m $MYUSERNAME \
 
 USER $MYUSERNAME
 
-COPY build_and_start.sh ${DOCKERDEVENVDIRECTORY}/
+COPY build_and_start.sh .
 
-RUN chmod u+x ${DOCKERDEVENVDIRECTORY}/build_and_start.sh
+RUN chmod +x ./build_and_start.sh
 
 # Keep the container alive
 CMD ["sleep", "infinity"]
