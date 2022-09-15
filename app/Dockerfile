@@ -67,11 +67,8 @@ RUN useradd -s /bin/bash -m $MYUSERNAME \
 
 USER $MYUSERNAME
 
-# Build the binaries
-RUN chmod +x build_and_start.sh
-
 # Keep the container alive
-CMD ["sleep", "infinity"]
+CMD ["chmod +x build_and_start.sh", "sleep", "infinity"]
 
 
 
