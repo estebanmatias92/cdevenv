@@ -40,7 +40,7 @@ WORKDIR /src/app
 COPY . .
 
 # Build the binaries
-RUN chmod +x build_and_start.sh && ./build_and_start.sh
+RUN chmod +x ./app/build_and_start.sh && ./app/build_and_start.sh
 
 
 
@@ -57,6 +57,9 @@ RUN apt-get update && apt-get install -y \
         git \
         gdb \
     && apt-get clean
+
+# Build the binaries
+RUN chmod +x ./app/build_and_start.sh && ./app/build_and_start.sh
 
 # Create and change user
 ENV MYUSERNAME="vscode"
