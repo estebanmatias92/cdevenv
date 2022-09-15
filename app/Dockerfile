@@ -67,8 +67,12 @@ RUN useradd -s /bin/bash -m $MYUSERNAME \
 
 USER $MYUSERNAME
 
+COPY build_and_start.sh .
+
+RUN chmod +x build_and_start.sh
+
 # Keep the container alive
-CMD ["chmod +x build_and_start.sh", "sleep", "infinity"]
+CMD ["sleep", "infinity"]
 
 
 
