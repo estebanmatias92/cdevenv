@@ -58,9 +58,6 @@ RUN apt-get update && apt-get install -y \
         gdb \
     && apt-get clean
 
-# Build the binaries
-RUN chmod +x build_and_start.sh && ./build_and_start.sh
-
 # Create and change user
 ENV MYUSERNAME="vscode"
 
@@ -69,6 +66,9 @@ RUN useradd -s /bin/bash -m $MYUSERNAME \
     && usermod -aG docker $MYUSERNAME
 
 USER $MYUSERNAME
+
+# Build the binaries
+RUN chmod +x build_and_start.sh
 
 # Keep the container alive
 CMD ["sleep", "infinity"]
